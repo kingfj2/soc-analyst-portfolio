@@ -1,4 +1,4 @@
-<img width="1101" height="624" alt="image" src="https://github.com/user-attachments/assets/babe3b17-b31d-4358-8d89-74535c920658" /># SOC Analyst Home Lab: Wazuh SIEM Deployment
+# SOC Analyst Home Lab: Wazuh SIEM Deployment
 
 ## Objective
 
@@ -27,6 +27,7 @@ Create a Linux server environment to host a Wazuh SIEM instance for security mon
 ## Connecting VM using SSH in host
 
 <img width="1103" height="607" alt="image" src="https://github.com/user-attachments/assets/22170e15-2788-4b41-b31f-339711eeacd3" />
+<img width="1101" height="624" alt="image" src="https://github.com/user-attachments/assets/babe3b17-b31d-4358-8d89-74535c920658" />
 
 ## Updating and upgrading all the repositories on the VM
 
