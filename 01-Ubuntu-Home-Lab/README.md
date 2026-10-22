@@ -23,11 +23,6 @@ Create a Linux server environment to host a Wazuh SIEM instance for security mon
 3. Allocate resources
 4. Install OpenSSH Server
 5. Configure networking
-6. Verify SSH connectivity
-
-## Validation
-
-Successfully connected via SSH from Windows host to Ubuntu server.
 
 ## Screenshots
 
@@ -40,3 +35,4 @@ Successfully connected via SSH from Windows host to Ubuntu server.
 - Virtualization
 - SSH Configuration
 - Network Configuration
+- SSH Connection
