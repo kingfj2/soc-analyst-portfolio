@@ -1,4 +1,4 @@
-# Ubuntu Home Lab Setup
+# SOC Analyst Home Lab: Wazuh SIEM Deployment
 
 ## Objective
 
