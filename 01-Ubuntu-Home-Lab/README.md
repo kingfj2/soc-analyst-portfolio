@@ -2,48 +2,41 @@
 
 ## Objective
 
-Build a cybersecurity home lab using VMware Workstation Pro and Ubuntu Linux.
+Create a Linux server environment to host a Wazuh SIEM instance for security monitoring.
 
-## Environment
+## Lab Specifications
 
-- VMware Workstation Pro
-- Ubuntu Desktop 24.04 LTS
-- Windows Host Machine
-
-## VM Specifications
-
-- RAM: 4 GB
-- CPU: 2 Cores
-- Storage: 100 GB
-- Network: NAT
+| Component | Value |
+|------------|---------|
+| Hypervisor | VMware Workstation Pro |
+| Host OS | Windows 11 |
+| Guest OS | Ubuntu Server 24.04 |
+| RAM | 8 GB |
+| CPU | 2 Cores |
+| Disk | 100 GB |
+| Network | NAT |
 
 ## Installation Steps
 
-1. Download Ubuntu ISO
-2. Create Virtual Machine
+1. Download Ubuntu Server 24.04 ISO
+2. Create a virtual machine
 3. Allocate resources
-4. Install Ubuntu
-5. Configure user account
-6. Install updates
+4. Install OpenSSH Server
+5. Configure networking
+6. Verify SSH connectivity
 
-## Commands Used
+## Validation
 
-```bash
-sudo apt update
-sudo apt upgrade -y
-```
+Successfully connected via SSH from Windows host to Ubuntu server.
+
+## Evidence
+
+<img width="1918" height="1073" alt="image" src="https://github.com/user-attachments/assets/52abb240-74c4-45cd-9ec6-55308db66d6e" />
+
 
 ## Skills Demonstrated
 
-- Virtualization
 - Linux Administration
-- Networking
-
-## Screenshots
-
-<img width="1918" height="1079" alt="image" src="https://github.com/user-attachments/assets/e60d1918-5170-483e-8a9a-eae3ae2a295e" />
-
-
-## Lessons Learned
-
-Ubuntu provides a stable Linux environment for practicing cybersecurity tools and SOC analyst workflows.
+- Virtualization
+- SSH Configuration
+- Network Configuration
