@@ -29,7 +29,7 @@ Create a Linux server environment to host a Wazuh SIEM instance for security mon
 
 Successfully connected via SSH from Windows host to Ubuntu server.
 
-## Evidence
+## Screenshots
 
 <img width="1918" height="1073" alt="image" src="https://github.com/user-attachments/assets/52abb240-74c4-45cd-9ec6-55308db66d6e" />
 
