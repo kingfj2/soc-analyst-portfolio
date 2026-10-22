@@ -1,4 +1,4 @@
-# SOC Analyst Home Lab: Wazuh SIEM Deployment
+<img width="1101" height="624" alt="image" src="https://github.com/user-attachments/assets/babe3b17-b31d-4358-8d89-74535c920658" /># SOC Analyst Home Lab: Wazuh SIEM Deployment
 
 ## Objective
 
@@ -36,6 +36,24 @@ Create a Linux server environment to host a Wazuh SIEM instance for security mon
 
 Successfully logged in to Wazuh dash board
 <img width="1909" height="923" alt="image" src="https://github.com/user-attachments/assets/3117ad7e-221e-4246-b696-0a6fc31d31ed" />
+
+## Enabling Archives in Wazuh
+It will allow Wazuh to monitor and capture all the telemery I throw on it
+Steps: 
+Configure the default settings of ossec.conf
+The Default <logall> is no so I change it to Yes. 
+
+<img width="1101" height="624" alt="image" src="https://github.com/user-attachments/assets/8149f52f-d571-48c0-a88a-8d3d5bcbdc5c" />
+
+After configuring the ossec.conf itmust be restarted, And the service should be restart is wazuh-manager.service
+
+<img width="1101" height="246" alt="image" src="https://github.com/user-attachments/assets/6ac6135c-19a7-456a-839b-35c68abd344f" />
+
+After restarting the ossec.conf, I edit Filebeat under ETC to enable the filebeat.modules
+<img width="1103" height="520" alt="image" src="https://github.com/user-attachments/assets/76a939c9-1928-4f40-892a-5c77bf91aa46" />
+
+
+
 
 
 
