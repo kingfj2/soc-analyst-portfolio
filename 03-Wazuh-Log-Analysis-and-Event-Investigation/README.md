@@ -94,7 +94,7 @@ net user wilma012 password123 /add
 
 Investigation Findings:
 
-- Account Created: student1
+- Account Created: wilma012
 - Created By: Bob
 - Event Source: Windows Security Log
 
@@ -112,13 +112,14 @@ net localgroup administrators wilma012 /add
 
 Investigation Findings:
 
-- User Added: student1
+- User Added: wilma012
 - Target Group: Administrators
 - Action Performed By: Bob
 
 Security Significance:
 
 This activity represents a privilege escalation event because administrative rights were granted to a standard user account.
+<img width="1478" height="348" alt="image" src="https://github.com/user-attachments/assets/08f218f0-f094-4ecb-9f19-5d32f4b03b44" />
 
 ---
 
@@ -174,6 +175,7 @@ Logon Type Interpretation:
 Analysis:
 
 The generated event confirmed a successful local interactive login performed through the VM console.
+<img width="1469" height="518" alt="image" src="https://github.com/user-attachments/assets/d931fb8a-1381-431c-9846-6dcacf7e5dc2" />
 
 ---
 
@@ -187,11 +189,13 @@ Attempted SSH login using an invalid user account:
 ssh fakeuser@192.168.136.129
 ```
 
+
 Observed Log:
 
 ```text
 Failed password for invalid user
 ```
+
 
 Captured Information:
 
@@ -203,6 +207,8 @@ Captured Information:
 Security Relevance:
 
 Failed authentication attempts are commonly associated with brute-force attacks, credential misuse, or reconnaissance activity.
+
+<img width="1486" height="871" alt="image" src="https://github.com/user-attachments/assets/43a8cfe5-33be-4d58-bf7a-8d87e7992a1b" />
 
 ---
 
@@ -230,6 +236,7 @@ Captured Fields:
 Analysis:
 
 Successful authentication generated SSH session records that could later be correlated with user activity.
+<img width="1480" height="492" alt="image" src="https://github.com/user-attachments/assets/5c319418-3fd9-4dec-940c-e8312c90870c" />
 
 ---
 
