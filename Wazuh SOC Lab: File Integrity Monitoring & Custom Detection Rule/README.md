@@ -1,4 +1,4 @@
-<img width="1175" height="458" alt="image" src="https://github.com/user-attachments/assets/797955b2-e944-466f-8293-da0eb7b6894a" /># 🛡️ Wazuh SOC Lab: File Integrity Monitoring & Custom Detection Rule
+🛡️ Wazuh SOC Lab: File Integrity Monitoring & Custom Detection Rule
 
 ## 📖 Overview
 
