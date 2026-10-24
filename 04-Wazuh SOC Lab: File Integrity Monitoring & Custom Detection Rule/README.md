@@ -1,7 +1,5 @@
 🛡️ Wazuh SOC Lab: File Integrity Monitoring & Custom Detection Rule
 
-
-
 ## 📖 Overview
 
 This project demonstrates hands-on experience with **Wazuh SIEM**, focusing on **File Integrity Monitoring (FIM)** and **Custom Detection Engineering** within a Security Operations Center (SOC) lab environment.
