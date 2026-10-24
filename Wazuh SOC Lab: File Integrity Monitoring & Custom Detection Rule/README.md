@@ -233,7 +233,7 @@ After rule tuning, the custom alert successfully triggered.
 
 ## 📸 Screenshots
 
-Add screenshots for:
+screenshots for:
 
 - File modification alert
 <img width="1175" height="458" alt="image" src="https://github.com/user-attachments/assets/3aa611f1-d5a8-462d-b78a-e20ff05a48fe" />
