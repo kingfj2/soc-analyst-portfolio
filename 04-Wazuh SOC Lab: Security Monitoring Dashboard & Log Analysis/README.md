@@ -1,193 +1,197 @@
-🛡️ Wazuh SOC Lab: File Integrity Monitoring & Custom Detection Rule
+# 📊 Wazuh SOC Lab: Security Monitoring Dashboard & Log Analysis
 
 ## 📖 Overview
 
-This project demonstrates hands-on experience with **Wazuh SIEM**, focusing on **File Integrity Monitoring (FIM)** and **Custom Detection Engineering** within a Security Operations Center (SOC) lab environment.
+This project demonstrates the creation of a custom Security Operations Center (SOC) dashboard using **Wazuh Dashboard**. The goal was to transform raw security telemetry into actionable visualizations that provide quick visibility into authentication events, account management activity, and potential security incidents.
 
-The objective was to configure real-time monitoring for critical files, create custom detection rules, validate alert generation, and perform troubleshooting to ensure accurate security event detection.
+The dashboard was designed to help analysts monitor both Windows and Linux systems through a centralized view of security events.
 
 ---
 
-## 🎯 Project Goals
+## 🎯 Project Objectives
 
-- Configure File Integrity Monitoring (FIM) on Windows and Linux endpoints
-- Detect file modifications, creations, and deletions in real time
-- Create a custom Wazuh rule to detect Windows Guest account enablement
-- Validate security alerts through controlled testing
-- Practice detection engineering and rule tuning workflows
+- Build a custom SOC dashboard in Wazuh
+- Visualize Windows authentication failures
+- Monitor Windows account management activity
+- Track failed SSH authentication attempts on Linux
+- Create actionable security-focused visualizations
+- Improve visibility into authentication-related events
 
 ---
 
 ## 🏗️ Lab Environment
 
 ### Security Platform
+
 - Wazuh Manager
 - Wazuh Dashboard
 - Wazuh Agents
 
 ### Endpoints
+
 - Windows Virtual Machine
 - Ubuntu Linux Server
 
----
-
-## 🔍 File Integrity Monitoring (FIM)
-
-### Windows Monitoring
-
-Configured Wazuh to monitor:
+### Data Source
 
 ```text
-C:\CompanyData
-```
-<img width="1124" height="461" alt="image" src="https://github.com/user-attachments/assets/66c8da76-c1e9-4940-8984-1e231a6eb185" />
-
-Created and monitored:
-
-```text
-C:\CompanyData\Payroll.txt
-```
-<img width="1422" height="302" alt="image" src="https://github.com/user-attachments/assets/12d8a01a-e815-4221-a050-128619cc8ed2" />
-
-Enabled real-time monitoring:
-
-```xml
-<directories realtime="yes">C:\CompanyData</directories>
-```
-
-### Linux Monitoring
-
-Configured Wazuh to monitor:
-
-```text
-/opt/company-data
-```
-<img width="762" height="173" alt="image" src="https://github.com/user-attachments/assets/984e8f2f-85fe-4137-9437-fae9ee7cdd5a" />
-
-Enabled real-time monitoring:
-
-```xml
-<directories realtime="yes">/opt/company-data</directories>
-```
-<img width="1103" height="417" alt="image" src="https://github.com/user-attachments/assets/1d93f5d4-7890-496a-b826-c826e4565baa" />
-
-### Validation Results
-
-Performed the following tests:
-
-- File creation
-- File modification
-- File deletion
-
-Generated successful Wazuh alerts for:
-
-✅ File integrity checksum changes
-
-✅ File modifications
-
-✅ File deletions
-
-✅ Real-time monitoring events
-<img width="1896" height="601" alt="image" src="https://github.com/user-attachments/assets/81ef80f5-33a3-4f7a-aa46-203b3032d7bb" />
-<img width="1896" height="654" alt="image" src="https://github.com/user-attachments/assets/b8c92eb8-e5a4-42c7-b418-4b3bd52a2195" />
-
----
-
-## 🚨 Custom Detection Engineering
-
-### Objective
-
-Detect when the built-in Windows **Guest** account becomes enabled.
-
-### Windows Security Event
-
-```text
-Event ID 4722
-```
-
-Meaning:
-
-```text
-A user account was enabled.
-```
-
-### Detection Logic
-
-Created a custom rule within:
-
-```text
-local_rules.xml
-```
-
-Custom rule monitors:
-
-- Event ID 4722
-- Guest account activity
-- Windows Security events
-
-Example rule logic:
-
-```xml
-<rule id="100500" level="12">
-  <field name="win.system.eventID">4722</field>
-  <field name="win.eventdata.targetUserName">Guest</field>
-  <description>Windows Guest Account Enabled</description>
-</rule>
+wazuh-archives
 ```
 
 ---
 
-## 🛠️ Troubleshooting & Rule Tuning
+## 📊 Dashboard Design
 
-The initial custom rule failed to trigger correctly.
+The dashboard consists of three primary panels designed to provide a basic SOC activity overview.
 
-Investigation included:
+### Panel 1: Failed Windows Logon Attempts
 
-- Reviewing Wazuh alert logs
-- Analyzing event field mappings
-- Comparing default Wazuh detection rules
-- Validating rule groups and dependencies
-- Testing multiple rule configurations
+**Visualization Type:** Metric
 
-### Key Improvements
+Purpose:
 
-Added:
+- Display the total number of failed Windows logon attempts
+- Monitor authentication failures at a glance
 
-```xml
-<if_sid>
+Event Filter:
+
+```text
+Event ID 4625
 ```
 
-Matched built-in Windows account management rules.
+Description:
 
-Aligned custom rule with:
+```text
+An account failed to log on
+```
 
-- windows
-- windows_security
-- account_changed
-- adduser
+Key Benefit:
 
-After rule tuning, the custom alert successfully triggered.
+Provides immediate visibility into potential password spraying, brute-force attempts, or user authentication issues.
 
 ---
 
-## ✅ Validation
+### Panel 2: Windows Account Changes Over Time
 
-### Test Procedure
+**Visualization Type:** Line Chart
 
-1. Disable Windows Guest account
-2. Re-enable Guest account
-3. Generate Event ID 4722
-4. Review alerts in Wazuh Dashboard
+Purpose:
 
-### Outcome
+Track account management activities over time.
 
-✅ Custom alert generated successfully
+Monitored Event IDs:
 
-✅ Event visible in Wazuh Dashboard
+| Event ID | Description |
+|-----------|------------|
+| 4720 | User Account Created |
+| 4722 | User Account Enabled |
+| 4723 | Password Change Attempt |
+| 4724 | Password Reset Attempt |
+| 4725 | User Account Disabled |
+| 4726 | User Account Deleted |
+| 4732 | User Added to Security Group |
+| 4733 | User Removed from Security Group |
+| 4738 | User Account Changed |
 
-✅ Detection rule validated
+Configuration:
 
-✅ Alert correlated with Windows Security logs
+- Y-Axis: Event Count
+- X-Axis: Timestamp
+- Split Series: Event ID
+
+Key Benefit:
+
+Allows analysts to identify unusual spikes in account management activity that may indicate administrative misuse or account compromise.
+
+---
+
+### Panel 3: Linux Failed SSH Authentication Activity
+
+**Visualization Type:** Data Table
+
+Purpose:
+
+Monitor failed SSH login attempts against the Linux server.
+
+Filter:
+
+```text
+"Failed password"
+```
+
+Displayed Fields:
+
+- Agent Name
+- Timestamp
+- Source User
+- Destination User
+- Source IP Address
+
+Key Benefit:
+
+Provides visibility into unauthorized SSH access attempts and potential brute-force activity.
+
+---
+
+## 🔍 Investigation Workflow
+
+Security events were analyzed using:
+
+- Wazuh Discover
+- Event Filtering
+- Event Field Mapping
+- Dashboard Visualizations
+
+Example investigations included:
+
+### Failed Windows Logons
+
+```text
+Event ID 4625
+```
+
+Used to identify failed user authentication attempts.
+
+### Linux SSH Failures
+
+```text
+Failed password
+```
+
+Used to identify unsuccessful SSH login attempts.
+
+### Account Management Events
+
+```text
+4720, 4722, 4725, 4726, 4732, 4733, 4738
+```
+
+Used to track modifications to local accounts and group memberships.
+
+---
+
+## ✅ Dashboard Validation
+
+Generated test telemetry by:
+
+### Windows
+
+- Failed user login attempts
+- Account management activity
+
+### Linux
+
+- Failed SSH authentication attempts
+
+Verification Results:
+
+✅ Authentication failures displayed correctly
+
+✅ Windows account changes visualized successfully
+
+✅ Linux SSH failed login activity captured
+
+✅ Real-time event monitoring confirmed
 
 ---
 
@@ -195,65 +199,66 @@ After rule tuning, the custom alert successfully triggered.
 
 ### Security Operations Center (SOC)
 
-- Alert Monitoring
+- Security Monitoring
+- Log Analysis
 - Event Investigation
-- Security Analysis
-- Log Correlation
+- Dashboard Development
 
-### Detection Engineering
+### Threat Detection
 
-- Custom Wazuh Rules
-- XML Rule Development
-- Rule Tuning
-- Alert Validation
-
-### Endpoint Security
-
-- Windows Security Monitoring
-- Linux Security Monitoring
-- File Integrity Monitoring
+- Authentication Monitoring
+- Account Management Monitoring
+- SSH Activity Analysis
+- Security Event Correlation
 
 ### SIEM Technologies
 
-- Wazuh Manager
 - Wazuh Dashboard
-- Wazuh Agents
+- Wazuh Discover
+- Wazuh Archives
+- Data Visualization
+
+### Security Analytics
+
+- Event ID Analysis
+- Query Development
+- Visualization Design
+- Security Reporting
 
 ---
 
 ## 🎓 Key Takeaways
 
-- Implemented File Integrity Monitoring across Windows and Linux systems.
-- Built and validated custom SIEM detection logic.
-- Learned how Wazuh rules inherit and correlate with built-in detection rules.
-- Applied troubleshooting techniques to improve detection accuracy.
-- Demonstrated practical SOC analyst and detection engineering skills.
+- Effective dashboards help analysts identify security issues faster.
+- Authentication monitoring provides valuable visibility into potential attacks.
+- Security visualizations improve detection and investigation workflows.
+- Combining Windows and Linux telemetry creates a centralized monitoring experience.
+- Proper event filtering reduces noise and highlights meaningful security activity.
 
 ---
 
 ## 📸 Screenshots
 
-screenshots for:
+ Screenshots of:
 
-- File modification alert
-<img width="1175" height="458" alt="image" src="https://github.com/user-attachments/assets/3aa611f1-d5a8-462d-b78a-e20ff05a48fe" />
+- Complete SOC Dashboard
+<img width="1539" height="750" alt="image" src="https://github.com/user-attachments/assets/09d4f52a-3348-4d52-a603-6c9e5f155560" />
 
+- Failed Windows Logon Metric
+<img width="774" height="340" alt="image" src="https://github.com/user-attachments/assets/53b25aa9-462d-4209-9520-07f2cf60b226" />
+  
+- Windows Account Changes Line Chart
+<img width="759" height="417" alt="image" src="https://github.com/user-attachments/assets/73a8f428-1bb1-42f3-9d48-e8abb9806ffc" />
 
-- File deletion alert
-<img width="1169" height="439" alt="image" src="https://github.com/user-attachments/assets/b59a2a9b-2659-434f-91f6-9f8dcd6809dd" />
+- Linux Failed SSH Authentication Table
+<img width="758" height="255" alt="image" src="https://github.com/user-attachments/assets/8882032d-180c-4de6-b110-9fae288772e9" />
 
+- Wazuh Discover Queries
+<img width="1199" height="846" alt="image" src="https://github.com/user-attachments/assets/d3e1bc05-8810-464b-935f-9aa21012a926" />
 
-- Custom Guest Account Enabled alert
-<img width="1465" height="242" alt="image" src="https://github.com/user-attachments/assets/6270192a-ebe3-4631-9dc5-8dff05415a2c" />
-
-- Wazuh Dashboard overview
-<img width="1511" height="739" alt="image" src="https://github.com/user-attachments/assets/3cc0b25b-39f4-4d2c-aa51-73bef1418b8e" />
-
-- local_rules.xml configuration
-<img width="1498" height="164" alt="image" src="https://github.com/user-attachments/assets/8468b1c9-95ee-4492-a429-9ea502f1a232" />
 
 ---
 
 ## 🚀 Project Outcome
 
-Successfully deployed real-time File Integrity Monitoring (FIM) and developed a custom Wazuh detection rule capable of identifying Windows Guest account enablement events. This project demonstrates practical skills in SOC operations, SIEM administration, detection engineering, security monitoring, and alert validation.
+Successfully developed a custom SOC monitoring dashboard within Wazuh that visualizes authentication failures, account management activities, and Linux SSH login attempts. This project demonstrates practical experience with SIEM dashboards, log analysis, security monitoring, incident investigation, and security data visualization commonly performed by SOC Analysts and Blue Team professionals.
