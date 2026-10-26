@@ -81,12 +81,8 @@ No attachment present.
 *Firewall search for hrconnex over the 24 hours before the alert.*
 
 ```spl
-PASTE THE EXACT SEARCH FROM YOUR SCREENSHOT HERE
+*datasource=firewall URL="*hrconnex*"
 ```
-
-**What the results showed:** 0 events, so no host contacted hrconnex.thm and no traffic to it was allowed or blocked.
-
-![Splunk results showing no events for hrconnex](https://github.com/user-attachments/assets/213a0783-6612-4cb3-8d20-8cdca595599c)
 
 ### Related alerts
 
