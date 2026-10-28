@@ -39,7 +39,7 @@
 * Although the firewall blocked the attack. The phishing email still on the user's mailbox where it could be clicked again
 
 * Advise the user to delete the email to prevent the link to being click again.
-* Block the send address at the mail gateway.
+* Block the sender address at the mail gateway.
  
 
 ## 🎯 Indicators of Compromise (IoCs)
