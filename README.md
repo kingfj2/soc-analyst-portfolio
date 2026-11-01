@@ -37,7 +37,7 @@ I support enterprise Windows endpoints, Active Directory and Microsoft 365 by da
 | 04 | [Wazuh Security Monitoring Dashboard](https://github.com/kingfj2/soc-analyst-portfolio/tree/main/04-Wazuh-Security-Monitoring-Dashboard) | Failed logons, account changes, SSH failures |
 | 05 | [File Integrity Monitoring and Custom Detection Rule](https://github.com/kingfj2/soc-analyst-portfolio/tree/main/05-Wazuh-FIM-and-Custom-Detection-Rule) | Real-time FIM, custom rule for Guest account enabled |
 | 06 | [Wazuh Active Response: SSH Brute-Force Blocking](https://github.com/kingfj2/soc-analyst-portfolio/tree/main/06-Wazuh-Active-Response-SSH-Brute-Force) | Detection plus automated containment |
-| 07 | [Splunk Phishing Investigation: Alert 1000](https://github.com/kingfj2/soc-analyst-portfolio/tree/main/07-Splunk-Alert-1000-Suspicious-Email) | Scam email triage, mailbox behavior analysis, SPL searches, evidence-based verdict |
+| 07 | [Splunk Phishing Investigation: Alert 1000](https://github.com/kingfj2/soc-analyst-portfolio/tree/main/investigations/2026-11-01_phishing-unfolding/alert-1000) | Scam email triage, mailbox behavior analysis, SPL searches, evidence-based verdict |
 
 ---
 
